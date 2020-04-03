@@ -440,21 +440,12 @@ Resources:
         PublicSubnet1CIDR: !Ref PublicSubnet1CIDR
         PublicSubnet2CIDR: !Ref PublicSubnet2CIDR
         NumberOfAZs: !Ref NumberOfAZs
-  IDEStack:
-    Type: AWS::CloudFormation::Stack
-    Properties:
-      TemplateURL:
-        !Sub
-          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/cloud9-ide-instance.yaml'
-          - S3Region: !If [UsingDefaultBucket, !Sub '${AWS::Region}', !Ref QSS3BucketRegion]
-            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
-      Parameters:
+
+        # From IDEStack
         EBSVolumeSize: !Ref EBSVolumeSize
         C9InstanceType: !Ref C9InstanceType
         BootstrapScriptS3Uri: !Ref BootstrapScriptS3Uri
         C9StopTime: !Ref 'C9StopTime'
-        C9Subnet:
-          Fn::ImportValue:
-            !Sub '${VPCStack}-PublicSubnet1ID'
         QSS3BucketName: !Ref QSS3BucketName
         QSS3KeyPrefix: !Ref QSS3KeyPrefix
+
