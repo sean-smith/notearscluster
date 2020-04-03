@@ -418,16 +418,18 @@ Resources:
     Type: AWS::SecretsManager::Secret
     Properties:
       SecretString: !GetAtt 'CreateKeypair.PrivateKey'
-  VPCStack:
-    Condition: CreateVPCStack
+
+  # Consolidate VPC and IDE Stack as the subnet information from the VPC Stack is needed inside the IDE Stack.
+  VPCandIDEStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL:
-        !Sub
-          - 'https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template'
-          - S3Region: !If [UsingDefaultBucket, !Sub '${AWS::Region}', !Ref QSS3BucketRegion]
-            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      TemplateURL: https://8192-stesachs.s3-eu-west-1.amazonaws.com/quickstart-cloud9-ide/templates/vpc-and-cloud9-ide-instance.yaml
+        #!Sub
+        #  - 'https://${S3Bucket}.s3-${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/vpc-and-cloud9-ide-instance.yaml'
+        #  - S3Region: !If [UsingDefaultBucket, !Sub '${AWS::Region}', !Ref QSS3BucketRegion]
+        #    S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
+        # From VPCStack
         AvailabilityZones: !Join
           - ','
           - !Ref AvailabilityZones
