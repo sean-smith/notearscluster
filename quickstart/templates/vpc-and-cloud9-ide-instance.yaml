@@ -823,6 +823,10 @@ Resources:
       InstanceId: !Ref C9InstanceProfile
       BootstrapPath: !Ref BootstrapScriptS3Uri
       BootstrapArguments: !Ref BootstrapArguments
+      # Stuff needs to be added here as the bootstrap cannot read Output from an incomplete stack
+      VPCID: !Ref 'VPC'
+      MasterSubnetID: !Ref 'PublicSubnet1'
+      ComputeSubnetID: !Ref 'PrivateSubnet1A'
 
   # From VPC
   DHCPOptions:

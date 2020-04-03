@@ -36,10 +36,19 @@ def create(event, context):
     instance_id = event["ResourceProperties"]["InstanceId"]
     bootstrap_path = event['ResourceProperties']['BootstrapPath']
     arguments = event['ResourceProperties']['BootstrapArguments']
+    vpc_id = event['ResourceProperties']['VPCID']
+    master_subnet_id = event['ResourceProperties']['MasterSubnetID']
+    compute_subnet_id = event['ResourceProperties']['ComputeSubnetID']
+
     while True:
         commands = ['mkdir -p /tmp/setup', 'cd /tmp/setup',
                     'aws --no-sign-request s3 cp ' + bootstrap_path + ' bootstrap.sh --quiet',
-                    'sudo chmod +x bootstrap.sh', 'sudo -u ec2-user bash bootstrap.sh ' + arguments]
+                    'sudo chmod +x bootstrap.sh',
+                    'sudo -u ec2-user '
+                    + ' vpc_id=' + vpc_id
+                    + ' master_subnet_id=' + master_subnet_id
+                    + ' compute_subnet_id=' + compute_subnet_id
+                    + ' bash bootstrap.sh ' + arguments]
         send_response = send_command(instance_id, commands)
         if send_response:
             helper.Data["CommandId"] = send_response['Command']['CommandId']

@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
 
-pip-3.6 --disable-pip-version-check install aws-parallelcluster -U
+sudo pip-3.6 --disable-pip-version-check --no-cache-dir install aws-parallelcluster -U
 
-
-AWS_REGION=us-east-1
+AWS_REGION=eu-west-1
 KEY_NAME=amzn
-VPC_STACK=VPCStack
 
+mkdir -p ~/.parallelcluster
 cat >> ~/.parallelcluster/config <<EOF
 [global]
 cluster_template = covid
@@ -42,8 +41,8 @@ port = 8443
 access_from = 0.0.0.0/0
 
 [vpc public-private]
-vpc_id = $(aws --region ${AWS_REGION} cloudformation  describe-stacks --stack-name ${VPC_STACK} --query "Stacks[0].Outputs[?OutputKey=='VPCID'].OutputValue" --output=text)
-master_subnet_id = $(aws --region ${AWS_REGION} cloudformation  describe-stacks --stack-name ${VPC_STACK} --query "Stacks[0].Outputs[?OutputKey=='PublicSubnet1ID'].OutputValue" --output=text)
-compute_subnet_id = $(aws --region ${AWS_REGION} cloudformation  describe-stacks --stack-name ${VPC_STACK} --query "Stacks[0].Outputs[?OutputKey=='PrivateSubnet1AID'].OutputValue" --output=text)
+vpc_id = ${vpc_id}
+master_subnet_id = ${master_subnet_id}
+compute_subnet_id = ${compute_subnet_id}
 
 EOF
