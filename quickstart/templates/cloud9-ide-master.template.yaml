@@ -451,6 +451,8 @@ Resources:
         C9InstanceType: !Ref C9InstanceType
         BootstrapScriptS3Uri: !Ref BootstrapScriptS3Uri
         C9StopTime: !Ref 'C9StopTime'
-        C9Subnet: !ImportValue 'VPCStack-PublicSubnet1ID'
+        C9Subnet:
+          Fn::ImportValue:
+            !Sub '${VPCStack}-PublicSubnet1ID'
         QSS3BucketName: !Ref QSS3BucketName
         QSS3KeyPrefix: !Ref QSS3KeyPrefix
