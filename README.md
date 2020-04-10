@@ -1,52 +1,119 @@
 # COVID-19 AWS HPC Cluster
 
-## User Setup
+## New User Accounts
+<details>
+<summary>Click to expand</summary>
+<br>
 
+### Prerequisites
+
+* A computer with an internet connection running Microsoft Windows, Mac OS X, or Linux.
+* An internet browser such as Chrome, Firefox, or Safari.
+* Familiarity with common Linux commands.
+
+### Sign in to the AWS Console
+Access the [AWS Management Console](https://signin.aws.amazon.com/console). To sign in, enter your AWS Account ID or alias, IAM user name, and password that was provided to you.
+
+![AWS Console Sign-In](https://user-images.githubusercontent.com/187202/79024818-b358ed00-7b49-11ea-9513-f339cca7a46a.png)
+
+
+After you sign in, take a few minutes to explore the navigation components of the AWS Management Console.
+
+* A search bar allows you to quickly locate services based on text.
+* Recently visited services are located below the search bar.
+* In the toolbar, the Services drop-down menu populates a list of all services.
+* The Support drop-down menu includes links to support and [documentation](https://docs.aws.amazon.com/).
+* The Region drop-down menu allows you to select a specific AWS Region.
+
+![aws-console](https://user-images.githubusercontent.com/187202/79024890-e4d1b880-7b49-11ea-86f1-22e0bdd96ee1.png)
+
+You are now ready to launch the Quick Start 
+</br>
+</details>
+
+---
+
+## Launch the COVID19 HPC QuickStart Environment
+
+### Step 1
 To deploy, click:
 
 | Region       | Stack                                                                                                                                                                                                                                                                                                              |
 |--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| us-east-1    | [![amplifybutton](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/template?stackName=AWS-HPC-Quickstart&templateURL=https://covid19hpc-quickstart.s3.amazonaws.com/cfn.yaml)       |
-| us-west-2    | [![amplifybutton](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/template?stackName=AWS-HPC-Quickstart&templateURL=https://covid19hpc-quickstart.s3.amazonaws.com/cfn.yaml)       |
-| eu-west-1    | [![amplifybutton](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/create/template?stackName=AWS-HPC-Quickstart&templateURL=https://covid19hpc-quickstart.s3.amazonaws.com/cfn.yaml)       |
-| eu-central-1 | [![amplifybutton](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/create/template?stackName=AWS-HPC-Quickstart&templateURL=https://covid19hpc-quickstart.s3.amazonaws.com/cfn.yaml) |
+| us-east-1    | [![amplifybutton](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=AWS-HPC-Quickstart&templateURL=https://covid19hpc-quickstart.s3.amazonaws.com/cfn.yaml)       |
+| us-west-2    | [![amplifybutton](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?stackName=AWS-HPC-Quickstart&templateURL=https://covid19hpc-quickstart.s3.amazonaws.com/cfn.yaml)       |
+| eu-west-1    | [![amplifybutton](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/create/review?stackName=AWS-HPC-Quickstart&templateURL=https://covid19hpc-quickstart.s3.amazonaws.com/cfn.yaml)       |
+| eu-central-1 | [![amplifybutton](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/create/review?stackName=AWS-HPC-Quickstart&templateURL=https://covid19hpc-quickstart.s3.amazonaws.com/cfn.yaml) |
 
-### Step 1
-After clicking "Launch Stack" you'll be redirected to a screen, leave everything as default and click "Next":
-
-![image](https://user-images.githubusercontent.com/5545980/79008676-bbe20100-7b12-11ea-8f08-cd9b32415221.png)
+If you have not authenticated with the [AWS Management Console](https://signin.aws.amazon.com/console), you will be prompted to login with the AWS Account ID or alias, IAM user name, and password that was provided to you. 
 
 ### Step 2
-Fill out the **UserPasswordParameter** with a desired password, you'll be prompted to change it later.
+After clicking `Launch Stack` you will be redirected to the CloudFormation **Quick create stack** screen. 
 
-Leave all the other parameters as they are and click "Next":
-
-![image](https://user-images.githubusercontent.com/5545980/79008772-f481da80-7b12-11ea-852d-66d6963ecfb4.png)
+<img width="982" alt="Quick create stack" src="https://user-images.githubusercontent.com/187202/79027970-db4d4e00-7b53-11ea-89c1-7feba2029df9.png">
 
 ### Step 3
-Click "Next":
-![image](https://user-images.githubusercontent.com/5545980/79008829-10857c00-7b13-11ea-92ac-921eb6129eda.png)
+
+Scroll to the bottom of the page, and leave most of the Parameters as they are. 
+
+1. Fill out the `UserPasswordParameter` with a temporary password. Keep it simple! You will be prompted to change it on first use.
+
+2. Select `I acknowledge that AWS Cloudformation might create IAM resources with custom names`. 
+
+Now, click `Create Stack` to deploy the QuickStart Environment. 
+
+<img width="982" alt="Screen Shot 2020-04-11 at 3 46 48 PM" src="https://user-images.githubusercontent.com/187202/79056281-2df13d80-7c1a-11ea-8fd9-0376832ca791.png">
+
+
+### Deployment 
+Deployment takes about 15 minutes. This QuickStart provisions: 
+- a Cloud9 Integrated Development Environment (IDE) in your selected region;
+- an AWS Parallel Cluster environment, named `covid-cluster`, for batch scheduled jobs and interactive computing;
+- a non-root IAM User, named `hpc-quickstart`, with full access to the AWS Console to create custom architectures. 
+
+Provisioning is complete when all Stacks show *CREATE_COMPLETE*. 
+
+![image](https://user-images.githubusercontent.com/187202/79025531-ab01b180-7b4b-11ea-8234-9bc393f69893.png)
+</details>
+--- 
+
+## Access Your Cluster
 
 ### Step 4
-Select "I acknowledge that AWS Cloudformation might create IAM resource" and click "Create Stack"
-![image](https://user-images.githubusercontent.com/5545980/79008876-272bd300-7b13-11ea-9172-5d0ca9501038.png)
-
-### Step 5
-After the stack goes into CREATE_COMPLETE, click on the "Outputs" tab of the AWS-HPC-Quickstart stack, there you'll see a URL. Click on that URL and you'll be re-directed to the console:
+When all stacks show *CREATE_COMPLETE*, click on the `Outputs` tab of the `AWS-HPC-Quickstart` stack. You should see two URLs: one for a Cloud9 environment and a second for user Login. Click on the `UserLoginUrl` and your web browser will be re-directed to an AWS Cloud9 interactive console:
 
 ![image](https://user-images.githubusercontent.com/5545980/79009644-d4ebb180-7b14-11ea-9029-e79d75647708.png)
+
+The Cloud9 environment will look like this: 
+
+![Cloud9](https://user-images.githubusercontent.com/187202/79025821-81955580-7b4c-11ea-9f2f-3fd128afe939.png)
+
+### Step 5 
+Confirm the name of your AWS Parallel Cluster: 
+```
+pcluster list
+```
+The name should be `covid-cluster` and the state should be `CREATE_COMPLETE`. 
+
+Connect to the cluster with the following: 
+```
+pcluster ssh covid-cluster
+```
+
+
+
 
 ### Step 6
 Now you can log in as a `hpc-quickstart` user, go to the stack "Outputs":
 
 Click on the "UserLoginUrl" and you'll be redirected to a page that looks like:
 
+![image](https://user-images.githubusercontent.com/5545980/79014795-7c221600-7b20-11ea-8933-bdfdd0c7146d.png)
+
 ```bash
-UserName: hpc-quickstart
+IAM User Name: hpc-quickstart
 Password: [set during stack creation]
 ```
-
-![image](https://user-images.githubusercontent.com/5545980/79014795-7c221600-7b20-11ea-8933-bdfdd0c7146d.png)
 
 Fill in the username and password you noted above and you'll be asked to reset the password:
 
@@ -58,6 +125,7 @@ If you see the following:
 **The security token included in the request is invalid**
 
 It's likely an issue with the account having been just created. Wait for some time and try again. 
+</details>
 
 ## Developer Setup
 
